@@ -14,8 +14,12 @@ For the time being, functionality is limited to the uttermost basics:
 * Every field becomes a text field
 * Occurencies of subforms
 * Auto-pruning of subtrees that don't end up in field leaves
+* Fragment support (usehref) including support for overridden subform bindings
+* inline xsd generation only
 
-There's also an option found in the top of xdp2xsd.js: `SLOPPY_DATA_BINDING [true]`: Say you have a LiveCycle process that accepts xml data which will eventually be merged with a business form. As a consumer, you would probably expect to be able to skip certain fields, or entire subforms for that matter, and settle for data binding of the sloppier kind...
+There's also an option found in the top of xdp.js: `STRICT_BINDING [false]`: Say you have a LiveCycle process that accepts xml data, which will eventually be merged with an xdp business form. As a consumer of that service, you  probably expect being able to skip certain fields (or entire subforms for that matter) and settle for data binding of the sloppier kind.
+
+A note on forms using fragments: make sure you apply unambiguous naming to fragments, or you will have a form repository maintenance nightmare once you start adding, removing or reordering fragments in the fragment file. xdp2xsd does support fragment references like 'form.customer_fragment[3]', but I encourage you to avoid this naming convention.
 
 #### To-do
 
@@ -23,7 +27,6 @@ Other than the issue section:
 
 * Clean up
 * Write tests
-* Frankly I'm ashamed of my solution for pruning "dead" subtrees (the ones that don't end up with a &lt;field&gt; leaf).
 
 > Written by [Christian Lagerkvist](https://github.com/o-o-).
 
